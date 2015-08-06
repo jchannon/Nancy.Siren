@@ -18,6 +18,22 @@
                 var order = orderRepository.GetById(id);
                 return order;
             };
+
+            Get["/{id:int}/items"] = parameters =>
+            {
+                int id = parameters.id;
+
+                return null;
+            };
+
+            Delete["/{id:int}"] = parameters =>
+            {
+                int id = parameters.id;
+
+                orderRepository.Delete(id);
+
+                return HttpStatusCode.NoContent;
+            };
         }
     }
 }

@@ -5,7 +5,12 @@
 
     public class OrderRepository : IOrderRepository
     {
-        private IEnumerable<Order> orders = new[] { new Order { ItemCount = 2, OrderNumber = 45323, Status = "Pending" }, new Order { ItemCount = 5, OrderNumber = 6534, Status = "Completed" } };
+        private List<Order> orders =
+            new List<Order>(new[]
+            {
+                new Order {ItemCount = 2, OrderNumber = 45323, Status = "Pending"},
+                new Order {ItemCount = 5, OrderNumber = 6534, Status = "Completed"}
+            });
 
         public IEnumerable<Order> GetAll()
         {
@@ -14,7 +19,16 @@
 
         public Order GetById(int id)
         {
-            return orders.FirstOrDefault(x => x.OrderNumber == id);
+            return orders.SingleOrDefault(x => x.OrderNumber == id);
+        }
+
+        public void Delete(int id)
+        {
+            var order = orders.SingleOrDefault(x => x.OrderNumber == id);
+            if (order != null)
+            {
+                orders.Remove(order);
+            }
         }
     }
 }

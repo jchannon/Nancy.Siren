@@ -6,5 +6,6 @@
     {
         IEnumerable<Order> GetAll();
         Order GetById(int id);
+        void Delete(int id);
     }
 }
