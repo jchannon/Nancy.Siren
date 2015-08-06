@@ -5,5 +5,6 @@
     public interface IOrderRepository
     {
         IEnumerable<Order> GetAll();
+        Order GetById(int id);
     }
 }

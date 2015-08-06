@@ -1,6 +1,7 @@
 ﻿namespace Nancy.Siren.Demo.Model
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class OrderRepository : IOrderRepository
     {
@@ -9,6 +10,11 @@
         public IEnumerable<Order> GetAll()
         {
             return orders;
+        }
+
+        public Order GetById(int id)
+        {
+            return orders.FirstOrDefault(x => x.OrderNumber == id);
         }
     }
 }

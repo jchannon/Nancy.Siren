@@ -1,16 +1,10 @@
 ﻿namespace Nancy.Siren.Demo
 {
-    using Nancy.Siren.Demo.Model;
-
     public class HomeModule : NancyModule
     {
-        public HomeModule(IOrderRepository orderRepository)
+        public HomeModule()
         {
-            Get["/"] = _ =>
-                {
-                    var orders = orderRepository.GetAll();
-                    return orders;
-                };
+            Get["/"] = _ => new {Orders = this.Context.Request.Url + "/orders"};
         }
     }
 }
