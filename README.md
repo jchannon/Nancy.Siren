@@ -11,9 +11,9 @@ A library to extend your response payload with the [Siren][1] hypermedia media t
         "order"
     ],
     "properties": {
-        "orderNumber": 45323,
-        "itemCount": 2,
-        "status": "Pending"
+        "orderNumber": 6534,
+        "itemCount": 6,
+        "status": "Completed"
     },
     "entities": [
         {
@@ -21,9 +21,9 @@ A library to extend your response payload with the [Siren][1] hypermedia media t
                 "collection"
             ],
             "rel": [
-                "http://localhost:8080/order-items/"
+                "http://localhost:8080/rels/order-items/"
             ],
-            "href": "http://localhost:8080/45323/items",
+            "href": "http://localhost:8080/orders/6534/items"
         }
     ],
     "actions": [
@@ -31,26 +31,33 @@ A library to extend your response payload with the [Siren][1] hypermedia media t
             "name": "delete-order",
             "title": "Delete Order",
             "method": "DELETE",
-            "href": "http://localhost:8080/orders/45323/",
+            "href": "http://localhost:8080/orders/6534/"
         },
         {
             "name": "add-to-order",
             "title": "Add Item To Order",
             "method": "POST",
-            "href": "http://localhost:8080/orders/45323/",
+            "href": "http://localhost:8080/orders/6534/",
             "type": "application/json",
             "fields": [
                 {
                     "name": "productCode",
-                    "type": "text",
+                    "type": "text"
                 },
                 {
                     "name": "quantity",
-                    "type": "number",
+                    "type": "number"
                 }
             ]
         }
     ],
-    "links": null
+    "links": [
+        {
+            "rel": [
+                "self"
+            ],
+            "href": "http://localhost:8080/orders/6534"
+        }
+    ]
 }
 ````

@@ -96,6 +96,8 @@
                     })
             };
 
+            sirenDoc.links = new List<Link>(new []{new Link{rel = new []{"self"}, href = uri.ToString()}});
+
             return sirenDoc;
         }
     }
