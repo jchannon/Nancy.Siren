@@ -1,6 +1,4 @@
-Nancy.Siren
-
-====================
+#Nancy.Siren
 
 
 A library to extend your response payload with the [Siren][1] hypermedia media type
@@ -23,11 +21,9 @@ A library to extend your response payload with the [Siren][1] hypermedia media t
                 "collection"
             ],
             "rel": [
-                "http://localhost:8080/orders/45323order-items/"
+                "http://localhost:8080/order-items/"
             ],
-            "href": "http://localhost:8080/orders/45323/45323/items",
-            "properties": null,
-            "links": null
+            "href": "http://localhost:8080/45323/items",
         }
     ],
     "actions": [
@@ -35,26 +31,22 @@ A library to extend your response payload with the [Siren][1] hypermedia media t
             "name": "delete-order",
             "title": "Delete Order",
             "method": "DELETE",
-            "href": "http://localhost:8080/orders/45323/45323",
-            "type": null,
-            "fields": null
+            "href": "http://localhost:8080/orders/45323/",
         },
         {
             "name": "add-to-order",
             "title": "Add Item To Order",
             "method": "POST",
-            "href": "http://localhost:8080/orders/45323/45323",
+            "href": "http://localhost:8080/orders/45323/",
             "type": "application/json",
             "fields": [
                 {
                     "name": "productCode",
                     "type": "text",
-                    "value": null
                 },
                 {
                     "name": "quantity",
                     "type": "number",
-                    "value": null
                 }
             ]
         }
