@@ -60,8 +60,13 @@
                         new Entity
                         {
                             @class = new[] {"collection"},
-                            rel = new[] {uri + "/order-items/"},
-                            href = uri + "/" + data.OrderNumber + "/items"
+                            rel =
+                                new[]
+                                {
+                                    uri.Scheme + "://" + uri.DnsSafeHost + ":" +
+                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/order-items/"
+                                },
+                            href = uri + "/items"
                         }
                     },
                 actions =
@@ -71,7 +76,7 @@
                         {
                             name = "delete-order",
                             title = "Delete Order",
-                            href = uri + "/" + data.OrderNumber,
+                            href = uri+"/",
                             method = "DELETE"
                         },
                         new Action
@@ -79,11 +84,14 @@
                             name = "add-to-order",
                             title = "Add Item To Order",
                             method = "POST",
-                            href = uri + "/"+data.OrderNumber,
+                            href = uri + "/",
                             type = "application/json",
                             fields =
                                 new List<Field>(new[]
-                                {new Field {name = "productCode", type = "text"}, new Field{name = "quantity", type = "number"}})
+                                {
+                                    new Field {name = "productCode", type = "text"},
+                                    new Field {name = "quantity", type = "number"}
+                                })
                         }
                     })
             };

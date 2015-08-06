@@ -6,6 +6,8 @@
     {
         IEnumerable<Order> GetAll();
         Order GetById(int id);
-        void Delete(int id);
+        bool Delete(int id);
+        IEnumerable<OrderItemViewModel> GetItemsForOrder(int id);
+        bool AddItemsToOrder(int id, List<OrderItem> model);
     }
 }
