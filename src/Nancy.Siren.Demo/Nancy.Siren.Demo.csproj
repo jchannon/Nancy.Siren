@@ -59,7 +59,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="HomeModule.cs" />
     <Compile Include="Infrastructure\OrderLinkGenerator.cs" />
-    <Compile Include="Infrastructure\SirenOrderWriter.cs" />
+    <Compile Include="Infrastructure\OrderWriter.cs" />
     <Compile Include="Model\IOrderRepository.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderRepository.cs" />

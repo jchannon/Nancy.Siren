@@ -5,11 +5,11 @@
 
     public class Bootstrapper : DefaultNancyBootstrapper
     {
-        protected override void ConfigureApplicationContainer(Nancy.TinyIoc.TinyIoCContainer container)
+        protected override void ConfigureApplicationContainer(TinyIoc.TinyIoCContainer container)
         {
             base.ConfigureApplicationContainer(container);
 
-            container.Register<ISirenDocumentWriter<Order>, SirenOrderWriter>();
+            container.Register<ISirenDocumentWriter<Order>, OrderWriter>();
             container.RegisterMultiple<ILinkGenerator>(new[] { typeof(OrderLinkGenerator) });
         }
 
