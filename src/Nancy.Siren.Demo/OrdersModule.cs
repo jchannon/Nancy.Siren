@@ -8,54 +8,59 @@
 
     public class OrdersModule : NancyModule
     {
-        public OrdersModule(IOrderRepository orderRepository)
-            : base("/orders")
+        public OrdersModule (IOrderRepository orderRepository)
+            : base ("/orders")
         {
-            Get["/"] = _ =>
-            {
-                var orders = orderRepository.GetAll();
-                return orders;
+            Get ["/"] = _ =>
+             {
+                 var orders = orderRepository.GetAll ();
+                 return orders;
+             };
+
+            Post ["/"] = _ =>
+             {
+                 return Response.AsCreatedResource (911);
+             };
+
+            Post ["/{id:int}"] = parameters =>
+             {
+                 var model = this.Bind<List<OrderItem>> ();
+
+                 int id = parameters.id;
+                 var result = orderRepository.AddItemsToOrder (id, model);
+                 return result ? HttpStatusCode.Created : HttpStatusCode.NotFound; //loc header
             };
 
-            Post["/{id:int}"] = parameters =>
-            {
-                var model = this.Bind<List<OrderItem>>();
+            Get ["/{id:int}"] = parameters =>
+             {
+                 int id = parameters.id;
 
-                int id = parameters.id;
-                var result = orderRepository.AddItemsToOrder(id, model);
-                return result ? HttpStatusCode.Created : HttpStatusCode.NotFound; //loc header
-            };
+                 var order = orderRepository.GetById (id);
+                 if (order == null)
+                 {
+                     return HttpStatusCode.NotFound;
+                 }
 
-            Get["/{id:int}"] = parameters =>
-            {
-                int id = parameters.id;
+                 return order;
+             };
 
-                var order = orderRepository.GetById(id);
-                if (order == null)
-                {
-                    return HttpStatusCode.NotFound;
-                }
+            Get ["/{id:int}/items"] = parameters =>
+             {
+                 int id = parameters.id;
 
-                return order;
-            };
+                 var items = orderRepository.GetItemsForOrder (id);
 
-            Get["/{id:int}/items"] = parameters =>
-            {
-                int id = parameters.id;
+                 return items;
+             };
 
-                var items = orderRepository.GetItemsForOrder(id);
+            Delete ["/{id:int}"] = parameters =>
+             {
+                 int id = parameters.id;
 
-                return items;
-            };
+                 var result = orderRepository.Delete (id);
 
-            Delete["/{id:int}"] = parameters =>
-            {
-                int id = parameters.id;
-
-                var result = orderRepository.Delete(id);
-
-                return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
-            };
+                 return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
+             };
         }
     }
 }
