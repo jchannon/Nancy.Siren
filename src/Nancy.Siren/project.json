@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+    "Nancy": "1.4.3"
+  },
+  "frameworks": {
+    "net451": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
