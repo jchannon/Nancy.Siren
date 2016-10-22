@@ -25,7 +25,7 @@
                     @class = new [] { "order" },
                     rel = new [] { "item" },
                     properties = order,
-                    links = new List<Link> { new Link { href = uri.ToString() + order.OrderNumber, rel = new [] { "self" } } }
+                    links = new List<Link> { new Link { href = uri + "/" + order.OrderNumber, rel = new [] { "self" } } }
                 };
 
                 sirenDoc.entities.Add (entity);
@@ -65,7 +65,7 @@
                                 new[]
                                 {
                                     uri.Scheme + "://" + uri.DnsSafeHost + ":" +
-                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/order-items/"
+                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/order-items"
                                 },
                             href = uri + "/items"
                         }
@@ -77,7 +77,7 @@
                         {
                             name = "delete-order",
                             title = "Delete Order",
-                            href = uri+"/",
+                            href = uri.ToString(),
                             method = "DELETE"
                         },
                         new Action
@@ -85,7 +85,7 @@
                             name = "add-to-order",
                             title = "Add Item To Order",
                             method = "POST",
-                            href = uri + "/",
+                            href = uri.ToString(),
                             type = "application/json",
                             fields =
                                 new List<Field>(new[]

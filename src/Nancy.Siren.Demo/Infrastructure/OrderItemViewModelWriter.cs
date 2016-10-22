@@ -23,7 +23,7 @@
                 {
                     @class = new[] { "order-item" },
                     rel = new[] { uri.Scheme + "://" + uri.DnsSafeHost + ":" +
-                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/orderitem/" },
+                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/orderitem" },
                     href=uri.ToString(),
                     properties = order
                 };
