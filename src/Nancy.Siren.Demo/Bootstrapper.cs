@@ -1,12 +1,11 @@
 ﻿namespace Nancy.Siren.Demo
 {
+    using System;
     using Nancy.Bootstrapper;
-    using Nancy.Json;
     using Nancy.Responses.Negotiation;
     using Nancy.Siren.Demo.Infrastructure;
     using Nancy.Siren.Demo.Model;
     using Nancy.TinyIoc;
-
     using ServiceStack.Text;
 
     public class Bootstrapper : DefaultNancyBootstrapper
@@ -19,7 +18,6 @@
             JsConfig.ExcludeTypeInfo = true;
             JsConfig.EmitCamelCaseNames = true;
         }
-
         protected override void ConfigureApplicationContainer(TinyIoc.TinyIoCContainer container)
         {
             base.ConfigureApplicationContainer(container);
@@ -30,7 +28,7 @@
             container.RegisterMultiple<ILinkGenerator>(new[] { typeof(OrderLinkGenerator) });
         }
 
-        protected override NancyInternalConfiguration InternalConfiguration
+        protected override Func<ITypeCatalog, NancyInternalConfiguration> InternalConfiguration
         {
             get
             {

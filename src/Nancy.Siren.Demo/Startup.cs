@@ -1,12 +1,13 @@
 ﻿namespace Nancy.Siren.Demo
 {
-    using global::Owin;    
+    using Microsoft.AspNetCore.Builder;
+    using Nancy.Owin;
 
     public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseNancy();
+            app.UseOwin(x => x.UseNancy(opt => opt.Bootstrapper = new Bootstrapper()));
         }
     }
 }

@@ -2,9 +2,9 @@
 {
     using System;
     using System.IO;
+    using Nancy.Configuration;
     using Nancy.Json;
     using System.Collections.Generic;
-    using Nancy.TinyIoc;
 
     public class SirenResponse : Response
     {
@@ -29,20 +29,10 @@
             this.StatusCode = HttpStatusCode.OK;
         }
 
-        private static string DefaultContentType
-        {
-            get { return string.Concat("application/json", Encoding); }
-        }
+        private string DefaultContentType => string.Concat("application/json", Encoding);
 
-        private static string Encoding
-        {
-            get
-            {
-                return !string.IsNullOrWhiteSpace(JsonSettings.DefaultCharset)
-                    ? string.Concat("; charset=", JsonSettings.DefaultCharset)
-                        : string.Empty;
-            }
-        }
+        private string Encoding => string.Concat("; charset=",
+            this.context.Environment.GetValue<JsonConfiguration>().DefaultEncoding.WebName);
 
         private Action<Stream> GetSirenContents(object model)
         {
