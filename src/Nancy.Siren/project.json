@@ -3,7 +3,7 @@
     "Nancy": "2.0.0-barneyrubble"
   },
   "frameworks": {
-    "netcoreapp1.0": {},
+    "netstandard1.6": {}, 
     "net452": {}
   }
 }
