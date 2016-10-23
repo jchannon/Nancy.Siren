@@ -23,7 +23,7 @@
                 {
                     @class = new[] { "order-item" },
                     rel = new[] { uri.Scheme + "://" + uri.DnsSafeHost + ":" +
-                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/orderitem/" },
+                                    (uri.Port != 80 ? uri.Port.ToString() : "") + "/rels/orderitem" },
                     href=uri.ToString(),
                     properties = order
                 };
@@ -33,7 +33,7 @@
 
            
 
-            sirenDoc.links = new List<Link> { new Link { href = uri + "/", rel = new[] { "self" } }, new Link{href = uri.ToString().Replace("items",""), rel = new []{"order"}} };
+            sirenDoc.links = new List<Link> { new Link { href = uri.ToString() , rel = new[] { "self" } }, new Link{href = uri.ToString().Replace("/items",""), rel = new []{"order"}} };  
 
             return sirenDoc;
         }

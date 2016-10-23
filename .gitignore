@@ -18,6 +18,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 
+# Visual Studio 2015 cache/options directory
+.vs/
+
 # Roslyn cache directories
 *.ide/
 
@@ -58,6 +61,7 @@ dlldata.c
 *.pidb
 *.svclog
 *.scc
+*.lock.json
 
 # Chutzpah Test files
 _Chutzpah*

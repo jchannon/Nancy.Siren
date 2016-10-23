@@ -1,20 +1,18 @@
 ﻿namespace Nancy.Siren.Demo
 {
-    using System;
-    using Microsoft.Owin.Hosting;
+    using Microsoft.AspNetCore.Hosting;
 
     class Program
     {
         static void Main(string[] args)
         {
-            var url = "http://+:8080";
-
-            using (WebApp.Start<Startup>(url))
-            {
-                Console.WriteLine("Running on {0}", url);
-                Console.WriteLine("Press enter to exit");
-                Console.ReadLine();
-            }
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseStartup<Startup>()
+                .UseUrls("http://+:8080")
+                .Build();
+            
+            host.Run();
         }
     }
 }

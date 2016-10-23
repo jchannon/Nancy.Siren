@@ -4,7 +4,7 @@
     {
         public HomeModule()
         {
-            Get["/"] = _ => new {Orders = this.Context.Request.Url + "/orders"};
+            Get("/", _ => new { Orders = this.Context.Request.Url + "/orders" });
         }
     }
 }

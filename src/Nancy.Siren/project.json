@@ -1,0 +1,9 @@
+﻿{
+  "dependencies": {
+    "Nancy": "2.0.0-barneyrubble"
+  },
+  "frameworks": {
+    "netstandard1.6": {}, 
+    "net452": {}
+  }
+}

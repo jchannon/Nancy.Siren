@@ -11,27 +11,24 @@
         public OrdersModule (IOrderRepository orderRepository)
             : base ("/orders")
         {
-            Get ["/"] = _ =>
+            Get ("/" , _ =>
              {
                  var orders = orderRepository.GetAll ();
                  return orders;
-             };
+             });
 
-            Post ["/"] = _ =>
-             {
-                 return Response.AsCreatedResource (911);
-             };
+            Post ("/", _ => Response.AsCreatedResource (911));
 
-            Post ["/{id:int}"] = parameters =>
+            Post ("/{id:int}", parameters =>
              {
                  var model = this.Bind<List<OrderItem>> ();
 
                  int id = parameters.id;
                  var result = orderRepository.AddItemsToOrder (id, model);
                  return result ? HttpStatusCode.Created : HttpStatusCode.NotFound; //loc header
-            };
+            });
 
-            Get ["/{id:int}"] = parameters =>
+            Get ("/{id:int}", parameters =>
              {
                  int id = parameters.id;
 
@@ -42,25 +39,25 @@
                  }
 
                  return order;
-             };
+             });
 
-            Get ["/{id:int}/items"] = parameters =>
+            Get ("/{id:int}/items", parameters =>
              {
                  int id = parameters.id;
 
                  var items = orderRepository.GetItemsForOrder (id);
 
                  return items;
-             };
+             });
 
-            Delete ["/{id:int}"] = parameters =>
+            Delete ("/{id:int}", parameters =>
              {
                  int id = parameters.id;
 
                  var result = orderRepository.Delete (id);
 
                  return result ? HttpStatusCode.NoContent : HttpStatusCode.NotFound;
-             };
+             });
         }
     }
 }
